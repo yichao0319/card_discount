@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150705081900) do
+ActiveRecord::Schema.define(version: 20150706142652) do
 
   create_table "agents", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -44,10 +44,10 @@ ActiveRecord::Schema.define(version: 20150705081900) do
     t.integer  "bank_id",       limit: 4
     t.integer  "card_type_id",  limit: 4
     t.integer  "card_level_id", limit: 4
-    t.string   "joint_type",    limit: 255
     t.string   "reference",     limit: 255
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.string   "name",          limit: 255
   end
 
   create_table "clicks", force: :cascade do |t|
