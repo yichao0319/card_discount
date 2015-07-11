@@ -1,7 +1,9 @@
 <h2>User Profile</h2>
 
-<% if current_user.privilege == 0 %>
-    <strong> Admin </strong>
+<% if current_user.privilege == 4 %>
+    <strong> Admin User</strong>
+<% elsif current_user.privilege == 2 %>
+    <strong> Registered User </strong>
 <% else %>
     <strong> Normal User </strong>
 <% end %>
@@ -34,3 +36,9 @@
 
 <%= link_to '編輯', edit_profile_path %> |
 <%= link_to '變更密碼', edit_registration_path(:user) %>
+<% if current_user && current_user.privilege >= 1 %>
+   | <%= link_to '新增卡片' %>
+<% end %>
+<% if current_user && current_user.privilege >= 4 %>
+   | <%= link_to '管理介面' %>
+<% end %>

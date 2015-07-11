@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150709174032) do
+ActiveRecord::Schema.define(version: 20150711233522) do
 
   create_table "agents", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -133,10 +133,10 @@ ActiveRecord::Schema.define(version: 20150709174032) do
     t.string   "current_sign_in_ip",     limit: 255
     t.string   "last_sign_in_ip",        limit: 255
     t.string   "account",                limit: 255
-    t.integer  "privilege",              limit: 4
     t.string   "gender",                 limit: 255
     t.date     "birthday"
     t.string   "city",                   limit: 255
+    t.integer  "privilege",              limit: 4,   default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
