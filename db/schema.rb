@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150706142652) do
+ActiveRecord::Schema.define(version: 20150709174032) do
 
   create_table "agents", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(version: 20150706142652) do
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.string   "photo",      limit: 255
   end
 
   create_table "store_infos", force: :cascade do |t|
@@ -115,6 +116,7 @@ ActiveRecord::Schema.define(version: 20150706142652) do
     t.integer  "rating",         limit: 1
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.string   "photo",          limit: 255
   end
 
   create_table "users", force: :cascade do |t|
