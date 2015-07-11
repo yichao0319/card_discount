@@ -1,0 +1,40 @@
+<h2>Edit</h2>
+
+<%= form_for @user, url: update_profile_path do |f| %>
+    
+    <div class="field">
+        <%= f.label :account %><br />
+        <%= f.text_field :account, autofocus: true %>
+    </div>
+
+    <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email %>
+    </div>
+
+    <div class="field">
+        Gender: 
+        <%= f.radio_button :gender, "male" %>
+        <%= label :gender_male, :gender, "Male" %>
+        <%= f.radio_button :gender, "female" %>
+        <%= label :gender_female, :gender, "Female" %>
+        <%= f.radio_button :gender, "others" %>
+        <%= label :gender_other, :gender, "Others" %>
+    </div>
+
+    <div class="field">
+        <%= f.label :birthday %><i>(mm-dd-yyyy)</i><br />
+        <%= f.date_field :birthday %>
+    </div>
+
+    <div class="field">
+        <%= f.label :city %><br />
+        <%= f.text_field :city %>
+    </div>
+
+    <div class="actions">
+        <%= f.submit "Update" %>
+    </div>
+<% end %>
+
+<%= link_to "Back", :back %>

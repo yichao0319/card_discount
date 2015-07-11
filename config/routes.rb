@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
+  ## login functions by devise
   devise_for :users
-  get 'user/index'
+  
+  ## additional controller users for profile editing
+  get 'profile/show' => 'users#show', as: 'show_profile'
+  get 'profile/edit' => 'users#edit', as: 'edit_profile'
+  match 'profile/update' => 'users#update', as: 'update_profile', via: [:patch]
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

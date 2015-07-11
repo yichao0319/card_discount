@@ -1,0 +1,36 @@
+<h2>User Profile</h2>
+
+<% if current_user.privilege == 0 %>
+    <strong> Admin </strong>
+<% else %>
+    <strong> Normal User </strong>
+<% end %>
+
+<p>
+    <strong>使用者:</strong>
+    <%= @user.account %>
+</p>
+ 
+<p>
+    <strong>E-Mail:</strong>
+    <%= @user.email %>
+</p>
+
+<p>
+    <strong>性別:</strong>
+    <%= @user.gender %>
+</p>
+
+<p>
+    <strong>生日:</strong>
+    <%= @user.birthday %>
+</p>
+
+<p>
+    <strong>居住城市:</strong>
+    <%= @user.city %>
+</p>
+
+
+<%= link_to '編輯', edit_profile_path %> |
+<%= link_to '變更密碼', edit_registration_path(:user) %>
