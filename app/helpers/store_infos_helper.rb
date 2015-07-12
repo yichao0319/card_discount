@@ -1,0 +1,2 @@
+module StoreInfosHelper
+end
