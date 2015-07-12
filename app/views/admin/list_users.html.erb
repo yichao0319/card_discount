@@ -12,7 +12,7 @@
       <td><%= user.email %></td>
       <td><%= link_to 'Show', admin_show_user_path(user) %></td>
       <td><%= link_to 'Edit', admin_edit_user_path(user) %></td>
-      <td><%= link_to 'Destroy', admin_delete_user_path(user),
+      <td><%= link_to 'Delete', admin_delete_user_path(user),
               method: :delete,
               data: { confirm: 'Are you sure?' } %></td>
     </tr>

@@ -3,4 +3,7 @@
 <%= render partial: 'users/user' %>
 
 <%= link_to '編輯', admin_edit_user_path(@user) %> | 
+<%= link_to '刪除', admin_delete_user_path(@user),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %> |
 <%= link_to '管理介面', admin_list_users_path %>

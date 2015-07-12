@@ -1,6 +1,6 @@
 class AdminController < ApplicationController
     before_action :require_admin
-    
+
     def list_users
         @admin = current_user
         @users = User.all
@@ -28,6 +28,16 @@ class AdminController < ApplicationController
             # render admin_show_user_path(@user)
             # render plain: @user.errors.full_messages
         end
+    end
+
+    def delete_user
+        @admin = current_user
+        @user = User.find_by_id(params[:id])
+
+        unless @user.nil?
+            @user.destroy
+        end
+        redirect_to admin_list_users_path
     end
 
 
