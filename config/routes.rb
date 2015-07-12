@@ -7,6 +7,13 @@ Rails.application.routes.draw do
   get 'profile/edit' => 'users#edit', as: 'edit_profile'
   match 'profile/update' => 'users#update', as: 'update_profile', via: [:patch]
 
+  ## admin pages
+  get 'admin/list_users' => 'admin#list_users', as: 'admin_list_users'
+  get 'admin/show_user' => 'admin#show_user', as: 'admin_show_user'
+  get 'admin/edit_user/:id' => 'admin#edit_user', as: 'admin_edit_user'
+  match 'admin/update_user/:id' => 'admin#update_user', as: 'admin_update_user', via: [:patch]
+  match 'admin/delete_user/:id' => 'admin#delete_user', as: 'admin_delete_user', via: [:delete]
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

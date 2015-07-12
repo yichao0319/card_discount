@@ -16,6 +16,3 @@
 !/log/.keep
 /tmp
 
-# Ignore schema which is updated automatically
-/db/schema.rb
-

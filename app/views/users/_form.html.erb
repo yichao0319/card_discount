@@ -1,0 +1,63 @@
+<!-- <%= form_for @user, url: update_profile_path do |f| %> -->
+
+    <% if @user.errors.any? %>
+        <div id="error_explanation">
+            <h2>
+                <%= pluralize(@user.errors.count, "error") %> prohibited
+                this user from being saved:
+            </h2>
+            <ul>
+                <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    
+    <div class="field">
+        <%= f.label :account %><br />
+        <%= f.text_field :account, autofocus: true %>
+    </div>
+
+    <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email %>
+    </div>
+
+    <% if current_user && current_user.privilege >= 4 %>
+        <div class="field">
+            <%= f.label :privilege %> (0:一般使用者，4:管理者)<br />
+            <%= f.text_field :privilege %>
+        </div>    
+    <% end %>
+
+    <div class="field">
+        Gender: 
+        <%= f.radio_button :gender, "male" %>
+        <%= label :gender_male, :gender, "Male" %>
+        <%= f.radio_button :gender, "female" %>
+        <%= label :gender_female, :gender, "Female" %>
+        <%= f.radio_button :gender, "others" %>
+        <%= label :gender_other, :gender, "Others" %>
+    </div>
+
+    <div class="field">
+        <%= f.label :birthday %><i>(mm-dd-yyyy)</i><br />
+        <%= f.date_field :birthday %>
+    </div>
+
+    <div class="field">
+        <%= f.label :city %><br />
+        <%= f.text_field :city %>
+    </div>
+
+    <div class="actions">
+        <%= f.submit "Update" %>
+    </div>
+
+<!-- 
+<% end %>
+
+<%= link_to "Back", :back %>
+-->

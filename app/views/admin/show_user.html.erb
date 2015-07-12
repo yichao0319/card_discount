@@ -1,0 +1,6 @@
+<h2>User Profile</h2>
+
+<%= render partial: 'users/user' %>
+
+<%= link_to '編輯', admin_edit_user_path(@user) %> | 
+<%= link_to '管理介面', admin_list_users_path %>
