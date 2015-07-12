@@ -8,8 +8,10 @@ class StoreInfosController < ApplicationController
         # render plain: params[:store_info].inspect
         @store_info = StoreInfo.new(store_info_params)
 
-        @group_ids = Group.find(params[:group_ids])
-        @store_info.groups = @group_ids
+        unless params[:group_ids].nil?
+            @group_ids = Group.find(params[:group_ids])
+            @store_info.groups = @group_ids
+        end
         
         if @store_info.save
             redirect_to @store_info
@@ -33,8 +35,10 @@ class StoreInfosController < ApplicationController
     def update
         @store_info = StoreInfo.find(params[:id])
 
-        @group_ids = Group.find(params[:group_ids])
-        @store_info.groups = @group_ids
+        unless params[:group_ids].nil?
+            @group_ids = Group.find(params[:group_ids])
+            @store_info.groups = @group_ids
+        end
         
         if @store_info.update(store_info_params)
             redirect_to @store_info
