@@ -69,6 +69,18 @@
         <%= f.file_field :photo %>
     </p>
 
+
+    <p>
+        <%= f.label :Groups %><br>
+        <% @groups.each do |group| %>
+            <% checked = @store_info.groups.include?(group) %>
+            <%= check_box_tag "group_ids[]", group.id, checked %>
+            <!-- <%= check_box_tag "@store_info.groups[]", group.id, checked %> -->
+            <%= label_tag(group.id, group.name) %>
+        <% end %>
+    </p>
+
+
     <p>
         <%= f.submit %>
     </p>

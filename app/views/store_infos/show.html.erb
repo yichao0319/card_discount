@@ -53,10 +53,12 @@
     <%= @store_info.photo %>
 </p>
 
-
-<h2>Group:</h2>
-Todo
-
+<p>
+    <strong>Groups:</strong><BR>
+    <% @store_info.groups.each do |group| %>
+        <%= group.name %><BR>
+    <% end %>
+</p>
 
 <%= link_to 'Edit', edit_store_info_path(@store_info) %> |
 <%= link_to 'Back', store_infos_path %>

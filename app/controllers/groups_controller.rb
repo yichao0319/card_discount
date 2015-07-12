@@ -1,12 +1,16 @@
 class GroupsController < ApplicationController
     def new
         @group = Group.new
+        @store_infos = StoreInfo.all
     end
 
     def create
         # render plain: params[:group].inspect
         @group = Group.new(group_params)
 
+        @store_info_ids = StoreInfo.find(params[:store_info_ids])
+        @group.store_infos = @store_info_ids
+        
         if @group.save
             redirect_to @group
         else
@@ -21,10 +25,14 @@ class GroupsController < ApplicationController
 
     def edit
         @group = Group.find(params[:id])
+        @store_infos = StoreInfo.all
     end
 
     def update
         @group = Group.find(params[:id])
+
+        @store_info_ids = StoreInfo.find(params[:store_info_ids])
+        @group.store_infos = @store_info_ids
 
         if @group.update(group_params)
             redirect_to @group
@@ -46,6 +54,6 @@ class GroupsController < ApplicationController
 
     private
         def group_params
-            params.require(:group).permit(:name, :photo)
+            params.require(:group).permit(:name, :photo, :store_infos)
         end
 end

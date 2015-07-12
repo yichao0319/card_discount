@@ -1,12 +1,16 @@
 class StoreInfosController < ApplicationController
     def new
         @store_info = StoreInfo.new
+        @groups = Group.all
     end
 
     def create
         # render plain: params[:store_info].inspect
         @store_info = StoreInfo.new(store_info_params)
 
+        @group_ids = Group.find(params[:group_ids])
+        @store_info.groups = @group_ids
+        
         if @store_info.save
             redirect_to @store_info
         else
@@ -21,11 +25,17 @@ class StoreInfosController < ApplicationController
 
     def edit
         @store_info = StoreInfo.find(params[:id])
+        @groups = Group.all
+
+        # render plain: @groups.inspect
     end
 
     def update
         @store_info = StoreInfo.find(params[:id])
 
+        @group_ids = Group.find(params[:group_ids])
+        @store_info.groups = @group_ids
+        
         if @store_info.update(store_info_params)
             redirect_to @store_info
         else
@@ -46,6 +56,6 @@ class StoreInfosController < ApplicationController
 
     private
         def store_info_params
-            params.require(:store_info).permit(:name, :country, :city, :district, :zip, :street, :phone, :official_site, :rate_reference, :rating, :photo)
+            params.require(:store_info).permit(:name, :country, :city, :district, :zip, :street, :phone, :official_site, :rate_reference, :rating, :photo, :groups)
         end
 end

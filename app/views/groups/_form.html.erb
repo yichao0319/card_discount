@@ -25,6 +25,15 @@
     </p>
 
     <p>
+        <%= f.label :Stores %><br>
+        <% @store_infos.each do |store_info| %>
+            <% checked = @group.store_infos.include?(store_info) %>
+            <%= check_box_tag "store_info_ids[]", store_info.id, checked %>
+            <%= label_tag(store_info.id, store_info.name) %>
+        <% end %>
+    </p>
+
+    <p>
         <%= f.submit %>
     </p>
 
