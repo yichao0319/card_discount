@@ -1,0 +1,27 @@
+
+<h1>Listing card_levels</h1>
+<%= link_to 'New Card Level', new_card_level_path %> <BR>
+<table>
+    <tr>
+        <th>等級</th>
+        <th>卡別</th>
+        <th>機構</th>
+    </tr>
+
+    <% @card_level.each do |card_level| %>
+        <tr>
+            <td><%= card_level.level %></td>
+            <td><%= card_level.name %></td>
+            <td>
+                <% unless card_level.agent_id.nil? %>
+                    <%= card_level.agent.name %>
+                <% end %>
+            </td>
+            <td><%= link_to 'Show', card_level_path(card_level) %></td>
+            <td><%= link_to 'Edit', edit_card_level_path(card_level) %></td>
+            <td><%= link_to 'Delete', card_level_path(card_level),
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+    <% end %>
+</table>

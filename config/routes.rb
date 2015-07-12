@@ -18,6 +18,13 @@ Rails.application.routes.draw do
   resources :groups
   resources :store_infos
 
+  ## bank & card
+  resources :agents
+  resources :card_types
+  resources :card_levels
+  resources :banks
+  resources :cards
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

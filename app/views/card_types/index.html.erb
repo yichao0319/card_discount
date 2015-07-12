@@ -1,0 +1,19 @@
+
+<h1>Listing card_types</h1>
+<%= link_to 'New Card Type', new_card_type_path %> <BR>
+<table>
+    <tr>
+        <th>Name</th>
+    </tr>
+
+    <% @card_type.each do |card_type| %>
+        <tr>
+            <td><%= card_type.name %></td>
+            <td><%= link_to 'Show', card_type_path(card_type) %></td>
+            <td><%= link_to 'Edit', edit_card_type_path(card_type) %></td>
+            <td><%= link_to 'Delete', card_type_path(card_type),
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+    <% end %>
+</table>

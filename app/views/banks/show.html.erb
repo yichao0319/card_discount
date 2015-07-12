@@ -1,0 +1,20 @@
+<p>
+    <strong>Name:</strong>
+    <%= @bank.name %>
+</p>
+
+<p>
+    <strong>SWIFT Number:</strong>
+    <%= @bank.swift_number %>
+</p>
+
+<p>
+    <strong>Cards:</strong>
+    <% @bank.cards.each do |card| %>
+        <%= card.name %>
+    <%  end %>
+</p>
+
+
+<%= link_to 'Edit', edit_bank_path(@bank) %> |
+<%= link_to 'Back', banks_path %>

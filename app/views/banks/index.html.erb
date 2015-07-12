@@ -1,0 +1,21 @@
+
+<h1>Listing Banks</h1>
+<%= link_to 'New Bank', new_bank_path %> <BR>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>SWIFT Number</th>
+    </tr>
+    
+    <% @bank.each do |bank| %>
+        <tr>
+            <td><%= bank.name %></td>
+            <td><%= bank.swift_number %></td>
+            <td><%= link_to 'Show', bank_path(bank) %></td>
+            <td><%= link_to 'Edit', edit_bank_path(bank) %></td>
+            <td><%= link_to 'Delete', bank_path(bank),
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+    <% end %>
+</table>

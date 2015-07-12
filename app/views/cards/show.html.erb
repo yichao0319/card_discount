@@ -1,0 +1,34 @@
+<p>
+    <strong>Name:</strong>
+    <%= @card.name %>
+</p>
+
+<p>
+    <strong>Bank:</strong>
+    <% unless @card.bank.nil? %>
+        <%= @card.bank.name %>
+    <% end %>
+</p>
+
+<p>
+    <strong>Type:</strong>
+    <% unless @card.card_type.nil? %>
+        <%= @card.card_type.name %>
+    <% end %>
+</p>
+
+<p>
+    <strong>Level:</strong>
+    <% unless @card.card_level.nil? %>
+        <%= @card.card_level.name_with_agent %>
+    <% end %>
+</p>
+
+<p>
+    <strong>Reference:</strong>
+    <%= @card.reference %>
+</p>
+
+
+<%= link_to 'Edit', edit_card_path(@card) %> |
+<%= link_to 'Back', cards_path %>

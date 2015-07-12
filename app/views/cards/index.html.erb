@@ -1,0 +1,39 @@
+
+<h1>Listing Cards</h1>
+<%= link_to 'New Card', new_card_path %> <BR>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Bank</th>
+        <th>Type</th>
+        <th>Level</th>
+        <th>Reference</th>
+    </tr>
+    
+    <% @card.each do |card| %>
+        <tr>
+            <td><%= card.name %></td>
+            <td>
+                <% unless card.bank.nil? %>
+                    <%= card.bank.name %>
+                <% end %>
+            </td>
+            <td>
+                <% unless card.card_type.nil? %>
+                    <%= card.card_type.name %>
+                <% end %>
+            </td>
+            <td>
+                <% unless card.card_level.nil? %>
+                    <%= card.card_level.name_with_agent %>
+                <% end %>
+            </td>
+            <td><%= card.reference %></td>
+            <td><%= link_to 'Show', card_path(card) %></td>
+            <td><%= link_to 'Edit', edit_card_path(card) %></td>
+            <td><%= link_to 'Delete', card_path(card),
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+    <% end %>
+</table>

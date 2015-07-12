@@ -1,0 +1,20 @@
+<p>
+    <strong>Level:</strong>
+    <%= @card_level.level %>
+</p>
+
+<p>
+    <strong>Name:</strong>
+    <%= @card_level.name %>
+</p>
+
+<p>
+    <strong>Agent:</strong>
+    <% unless @card_level.agent.nil? %> 
+        <%= @card_level.agent.name %>
+    <% end %>
+</p>
+
+
+<%= link_to 'Edit', edit_card_level_path(@card_level) %> |
+<%= link_to 'Back', card_levels_path %>
