@@ -1,6 +1,10 @@
-
 <h1>Listing stores</h1>
-<%= link_to 'New store', new_store_info_path %> 
+
+<% unless current_user.nil? %>
+    <%= link_to 'New store', new_store_info_path %><BR><BR>
+<% end %>
+
+
 <table>
     <tr>
         <th>Name</th>
@@ -30,10 +34,12 @@
             <td><%= store_info.rating %></td>
             <td><%= store_info.photo %></td>
             <td><%= link_to 'Show', store_info_path(store_info) %></td>
-            <td><%= link_to 'Edit', edit_store_info_path(store_info) %></td>
-            <td><%= link_to 'Delete', store_info_path(store_info),
-                method: :delete,
-                data: { confirm: 'Are you sure?' } %></td>
+            <% unless current_user.nil? %>
+                <td><%= link_to 'Edit', edit_store_info_path(store_info) %></td>
+                <td><%= link_to 'Delete', store_info_path(store_info),
+                    method: :delete,
+                    data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
         </tr>
     <% end %>
 </table>

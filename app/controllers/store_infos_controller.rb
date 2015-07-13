@@ -1,5 +1,9 @@
 class StoreInfosController < ApplicationController
     def new
+        if current_user.nil?
+            redirect_to store_infos_path
+        end
+
         @store_info = StoreInfo.new
         @groups = Group.all
     end
@@ -26,6 +30,10 @@ class StoreInfosController < ApplicationController
     end
 
     def edit
+        if current_user.nil?
+            redirect_to store_infos_path
+        end
+        
         @store_info = StoreInfo.find(params[:id])
         @groups = Group.all
 

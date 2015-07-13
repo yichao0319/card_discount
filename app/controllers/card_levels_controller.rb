@@ -1,5 +1,9 @@
 class CardLevelsController < ApplicationController
     def new
+        if current_user.nil?
+            redirect_to card_levels_path
+        end
+
         @card_level = CardLevel.new
         @agents = Agent.all
     end
@@ -21,6 +25,10 @@ class CardLevelsController < ApplicationController
     end
 
     def edit
+        if current_user.nil?
+            redirect_to card_levels_path
+        end
+        
         @card_level = CardLevel.find(params[:id])
         @agents = Agent.all
     end

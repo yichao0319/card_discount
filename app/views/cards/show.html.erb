@@ -30,5 +30,7 @@
 </p>
 
 
-<%= link_to 'Edit', edit_card_path(@card) %> |
+<% unless current_user.nil? %>
+    <%= link_to 'Edit', edit_card_path(@card) %> |
+<% end %>
 <%= link_to 'Back', cards_path %>

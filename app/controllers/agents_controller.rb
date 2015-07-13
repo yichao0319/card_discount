@@ -1,5 +1,9 @@
 class AgentsController < ApplicationController
     def new
+        if current_user.nil?
+            redirect_to agents_path
+        end
+        
         @agent = Agent.new
     end
 
@@ -20,6 +24,10 @@ class AgentsController < ApplicationController
     end
 
     def edit
+        if current_user.nil?
+            redirect_to agents_path
+        end
+
         @agent = Agent.find(params[:id])
     end
 

@@ -15,6 +15,10 @@ class WalletsController < ApplicationController
     end
 
     def edit
+        if current_user.nil?
+            redirect_to show_profile_path
+        end
+        
         @user = current_user
         @cards = Card.all
     end

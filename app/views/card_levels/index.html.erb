@@ -1,6 +1,10 @@
 
 <h1>Listing card_levels</h1>
-<%= link_to 'New Card Level', new_card_level_path %> <BR>
+
+<% unless current_user.nil? %>
+    <%= link_to 'New Card Level', new_card_level_path %> <BR><BR>
+<% end %>
+
 <table>
     <tr>
         <th>等級</th>
@@ -18,10 +22,12 @@
                 <% end %>
             </td>
             <td><%= link_to 'Show', card_level_path(card_level) %></td>
-            <td><%= link_to 'Edit', edit_card_level_path(card_level) %></td>
-            <td><%= link_to 'Delete', card_level_path(card_level),
-                method: :delete,
-                data: { confirm: 'Are you sure?' } %></td>
+            <% unless current_user.nil? %>
+                <td><%= link_to 'Edit', edit_card_level_path(card_level) %></td>
+                <td><%= link_to 'Delete', card_level_path(card_level),
+                    method: :delete,
+                    data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
         </tr>
     <% end %>
 </table>

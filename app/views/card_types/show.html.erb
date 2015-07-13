@@ -4,5 +4,7 @@
 </p>
 
 
-<%= link_to 'Edit', edit_card_type_path(@card_type) %> |
+<% unless current_user.nil? %>
+    <%= link_to 'Edit', edit_card_type_path(@card_type) %> |
+<% end %>
 <%= link_to 'Back', card_types_path %>

@@ -1,6 +1,10 @@
-
 <h1>Listing groups</h1>
-<%= link_to 'New group', new_group_path %> 
+
+<% unless current_user.nil? %>
+    <%= link_to 'New group', new_group_path %> <BR><BR>
+<% end %>
+
+
 <table>
     <tr>
         <th>Name</th>
@@ -12,10 +16,12 @@
             <td><%= group.name %></td>
             <td><%= group.photo %></td>
             <td><%= link_to 'Show', group_path(group) %></td>
-            <td><%= link_to 'Edit', edit_group_path(group) %></td>
-            <td><%= link_to 'Delete', group_path(group),
-                method: :delete,
-                data: { confirm: 'Are you sure?' } %></td>
+            <% unless current_user.nil? %>
+                <td><%= link_to 'Edit', edit_group_path(group) %></td>
+                <td><%= link_to 'Delete', group_path(group),
+                    method: :delete,
+                    data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
         </tr>
     <% end %>
 </table>

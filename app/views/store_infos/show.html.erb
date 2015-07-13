@@ -60,5 +60,7 @@
     <% end %>
 </p>
 
-<%= link_to 'Edit', edit_store_info_path(@store_info) %> |
+<% unless current_user.nil? %>
+    <%= link_to 'Edit', edit_store_info_path(@store_info) %> |
+<% end %>
 <%= link_to 'Back', store_infos_path %>

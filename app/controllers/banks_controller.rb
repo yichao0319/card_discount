@@ -1,5 +1,9 @@
 class BanksController < ApplicationController
     def new
+        if current_user.nil?
+            redirect_to banks_path
+        end
+
         @bank = Bank.new
     end
 
@@ -20,6 +24,10 @@ class BanksController < ApplicationController
     end
 
     def edit
+        if current_user.nil?
+            redirect_to banks_path
+        end
+        
         @bank = Bank.find(params[:id])
     end
 

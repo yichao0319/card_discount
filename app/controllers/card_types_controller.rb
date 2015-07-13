@@ -1,5 +1,9 @@
 class CardTypesController < ApplicationController
     def new
+        if current_user.nil?
+            redirect_to card_types_path
+        end
+
         @card_type = CardType.new
     end
 
@@ -20,6 +24,10 @@ class CardTypesController < ApplicationController
     end
 
     def edit
+        if current_user.nil?
+            redirect_to card_types_path
+        end
+        
         @card_type = CardType.find(params[:id])
     end
 

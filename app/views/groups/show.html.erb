@@ -16,5 +16,7 @@
 </p>
 
 
-<%= link_to 'Edit', edit_group_path(@group) %> |
+<% unless current_user.nil? %>
+    <%= link_to 'Edit', edit_group_path(@group) %> |
+<% end %>
 <%= link_to 'Back', groups_path %>
