@@ -22,3 +22,10 @@
     <strong>居住城市:</strong>
     <%= @user.city %>
 </p>
+
+<p>
+    <strong>我的皮夾:</strong> <BR>
+    <% unless @user.wallets.nil? %>
+        <%= render 'wallets/wallet' %>
+    <% end %>
+</p>

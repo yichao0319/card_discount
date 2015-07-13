@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
          #, :authentication_keys => [:login]
 
+  has_many :wallets, dependent: :destroy
+  has_many :cards, :through => :wallets
+
   # Virtual attribute for authenticating by either account or email
   # This is in addition to a real persisted field like 'account'
   # attr_accessor :login

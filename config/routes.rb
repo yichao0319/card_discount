@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   match 'admin/update_user/:id' => 'admin#update_user', as: 'admin_update_user', via: [:patch]
   match 'admin/delete_user/:id' => 'admin#delete_user', as: 'admin_delete_user', via: [:delete]
 
+  ## wallet
+  resources :wallets
+
   ## store & group
   resources :groups
   resources :store_infos
@@ -24,6 +27,7 @@ Rails.application.routes.draw do
   resources :card_levels
   resources :banks
   resources :cards
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

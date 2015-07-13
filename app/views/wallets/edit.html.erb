@@ -1,0 +1,40 @@
+<h1>Have a New Card</h1>
+
+<%= form_for @user, url: wallet_path(@user), method: :patch do |f| %>
+    <% if @user.errors.any? %>
+        <div id="error_explanation">
+            <h2>
+                <%= pluralize(@user.errors.count, "error") %> prohibited
+                this wallet from being saved:
+            </h2>
+            <ul>
+                <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <p>
+        <strong>使用者:</strong>
+        <%= @user.account %>
+    </p>
+
+    <p>
+        <%= f.label :Card %><br>
+        <% @cards.each do |card| %>
+            <% checked = @user.cards.include?(card) %>
+            <%= check_box_tag "card_ids[]", card.id, checked %>
+            <%= label_tag(card.id, card.full_name) %> <BR>
+        <% end %>
+        <BR>
+        <i> 沒有你的信用卡嗎? <%= link_to '新增信用卡', cards_path %>! <i><BR>
+    </p>
+
+    <p>
+        <%= f.submit %>
+    </p>
+
+<% end %>
+
+<%= link_to 'Back', show_profile_path %>

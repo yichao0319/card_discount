@@ -1,0 +1,32 @@
+
+<table>
+    <tr>
+        <th>Card</th>
+        <th>Bank</th>
+        <th>Type</th>
+        <th>Level</th>
+    </tr>
+    
+    <% unless @user.cards.nil? %>
+        <% @user.cards.each do |card| %>
+            <tr>
+                <td><%= card.name %></td>
+                <td>
+                    <% unless card.bank.nil? %>
+                        <%= card.bank.name %>
+                    <% end %>
+                </td>
+                <td>
+                    <% unless card.card_type.nil? %>
+                        <%= card.card_type.name %>
+                    <% end %>
+                </td>
+                <td>
+                    <% unless card.card_level.nil? %>
+                        <%= card.card_level.name_with_agent %>
+                    <% end %>
+                </td>
+            </tr>
+        <% end %>
+    <% end %>
+</table>
