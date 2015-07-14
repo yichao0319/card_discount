@@ -21,7 +21,7 @@
 
     <p>
         <%= f.label :bank %><br>
-        <%= f.collection_select :bank_id, Bank.order(:name),:id,:name, include_blank: true %>
+        <%= f.collection_select :bank_id, Bank.order(:swift_number),:id,:name_with_swift_number, include_blank: true %>
     </p>
 
     <p>
@@ -31,7 +31,7 @@
 
     <p>
         <%= f.label :card_level %><br>
-        <%= f.collection_select :card_level_id, CardLevel.order(:name),:id,:name_with_agent, include_blank: true %>
+        <%= f.collection_select :card_level_id, CardLevel.order(:agent_id),:id,:name_with_agent, include_blank: true %>
     </p>
 
     <p>
