@@ -7,3 +7,21 @@
 <%= link_to '信用卡等級', card_levels_path %> <BR>
 <%= link_to '銀行', banks_path %> <BR>
 <%= link_to '信用卡', cards_path %> <BR>
+
+<%= form_tag "/search" do %>
+<%= text_field_tag :keyword %>
+<%= submit_tag("搜尋") %>
+<% end %>
+
+<table>
+	<tr>
+		<td>餐廳</td>
+		<td>住宿</td>
+		<td>電影</td>
+	</tr>
+	<tr>
+		<td>交通</td>
+		<td>出國</td>
+		<td>現金回饋</td>
+	</tr>
+</table>
