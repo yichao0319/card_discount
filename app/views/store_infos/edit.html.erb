@@ -1,6 +1,6 @@
 <h1>Editing Store</h1>
 
-<%= render partial: 'form' %>
+<%= render partial: 'form', locals: {current_path: edit_store_info_path}  %>
 
 <%= link_to 'Back', store_infos_path %>
 

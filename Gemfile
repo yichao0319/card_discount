@@ -37,6 +37,7 @@ gem 'mysql2'
 
 ## yichao
 gem 'devise'
+gem 'jquery-turbolinks'
 
 
 group :development, :test do

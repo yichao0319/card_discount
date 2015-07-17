@@ -75,11 +75,33 @@
         <% @groups.each do |group| %>
             <% checked = @store_info.groups.include?(group) %>
             <%= check_box_tag "group_ids[]", group.id, checked %>
-            <!-- <%= check_box_tag "@store_info.groups[]", group.id, checked %> -->
             <%= label_tag(group.id, group.name) %>
         <% end %>
-    </p>
+    </p> 
 
+
+    <% if @group.errors.any? %>
+        <div id="error_explanation">
+            <h2>
+                <%= pluralize(@group.errors.count, "error") %> prohibited
+                this store from being saved:
+            </h2>
+            <ul>
+                <% @group.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    沒有店家所屬的連集團? <a group-form="show" data-no-turbolink href="#"> 新增一個! </a>  
+    <div id="new_group" style="display: none">
+        <p>
+            <%= fields_for :group, @group do |group_f| %>
+                <%= render partial: 'groups/subform', locals: {f: group_f} %>
+            <% end %>
+        </p> 
+    </div>
 
     <p>
         <%= f.submit %>
