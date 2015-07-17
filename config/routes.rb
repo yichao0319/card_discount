@@ -18,8 +18,16 @@ Rails.application.routes.draw do
   resources :wallets
 
   ## store & group
-  resources :groups
-  resources :store_infos
+  resources :groups do
+    member do
+      get 'logo'
+    end
+  end
+  resources :store_infos do
+    member do
+      get 'logo'
+    end
+  end
 
   ## bank & card
   resources :agents

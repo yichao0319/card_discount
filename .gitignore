@@ -16,3 +16,7 @@
 !/log/.keep
 /tmp
 
+# Ignore upload logos
+public/photo/groups/*
+public/photo/store_infos/*
+

@@ -32,7 +32,7 @@
             <td><%= store_info.official_site %></td>
             <td><%= store_info.rate_reference %></td>
             <td><%= store_info.rating %></td>
-            <td><%= store_info.photo %></td>
+            <td><%= image_tag logo_store_info_path(store_info) %></td>
             <td><%= link_to 'Show', store_info_path(store_info) %></td>
             <% unless current_user.nil? %>
                 <td><%= link_to 'Edit', edit_store_info_path(store_info) %></td>

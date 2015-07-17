@@ -1,3 +1,4 @@
+
 <p>
   <%= f.label :group_name %><br>
   <%= f.text_field :name %>
@@ -5,5 +6,11 @@
 
 <p>
   <%= f.label :group_photo %><br>
+  <% unless @group.photo.nil? %>
+    Old Logo:
+    <%= image_tag logo_group_path(@group) %>
+    <BR>
+  <% end %>
+
   <%= f.file_field :photo %>
 </p>

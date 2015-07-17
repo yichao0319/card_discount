@@ -1,110 +1,115 @@
 <%= form_for @store_info do |f| %>
 
-    <% if @store_info.errors.any? %>
-        <div id="error_explanation">
-            <h2>
-                <%= pluralize(@store_info.errors.count, "error") %> prohibited
-                this store from being saved:
-            </h2>
-            <ul>
-                <% @store_info.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-                <% end %>
-            </ul>
-        </div>
-    <% end %>
-
-    <p>
-        <%= f.label :name %><br>
-        <%= f.text_field :name %>
-    </p>
-
-    <p>
-        <%= f.label :country %><br>
-        <%= f.text_field :country %>
-    </p>
-
-    <p>
-        <%= f.label :city %><br>
-        <%= f.text_field :city %>
-    </p>
-
-    <p>
-        <%= f.label :district %><br>
-        <%= f.text_field :district %>
-    </p>
-
-    <p>
-        <%= f.label :zip %><br>
-        <%= f.text_field :zip %>
-    </p>
-
-    <p>
-        <%= f.label :street %><br>
-        <%= f.text_field :street %>
-    </p>
-
-    <p>
-        <%= f.label :phone %><br>
-        <%= f.text_field :phone %>
-    </p>
-
-    <p>
-        <%= f.label :official_site %><br>
-        <%= f.text_field :official_site %>
-    </p>
-
-    <p>
-        <%= f.label :rate_reference %><br>
-        <%= f.text_field :rate_reference %>
-    </p>
-
-    <p>
-        <%= f.label :rating %><br>
-        <%= f.text_field :rating %>
-    </p>
-
-    <p>
-        <%= f.label :photo %><br>
-        <%= f.file_field :photo %>
-    </p>
-
-
-    <p>
-        <%= f.label :Groups %><br>
-        <% @groups.each do |group| %>
-            <% checked = @store_info.groups.include?(group) %>
-            <%= check_box_tag "group_ids[]", group.id, checked %>
-            <%= label_tag(group.id, group.name) %>
+  <% if @store_info.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@store_info.errors.count, "error") %> prohibited
+        this store from being saved:
+      </h2>
+      <ul>
+        <% @store_info.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
         <% end %>
-    </p> 
-
-
-    <% if @group.errors.any? %>
-        <div id="error_explanation">
-            <h2>
-                <%= pluralize(@group.errors.count, "error") %> prohibited
-                this store from being saved:
-            </h2>
-            <ul>
-                <% @group.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-                <% end %>
-            </ul>
-        </div>
-    <% end %>
-
-    沒有店家所屬的連集團? <a group-form="show" data-no-turbolink href="#"> 新增一個! </a>  
-    <div id="new_group" style="display: none">
-        <p>
-            <%= fields_for :group, @group do |group_f| %>
-                <%= render partial: 'groups/subform', locals: {f: group_f} %>
-            <% end %>
-        </p> 
+      </ul>
     </div>
+  <% end %>
 
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :country %><br>
+    <%= f.text_field :country %>
+  </p>
+
+  <p>
+    <%= f.label :city %><br>
+    <%= f.text_field :city %>
+  </p>
+
+  <p>
+    <%= f.label :district %><br>
+    <%= f.text_field :district %>
+  </p>
+
+  <p>
+    <%= f.label :zip %><br>
+    <%= f.text_field :zip %>
+  </p>
+
+  <p>
+    <%= f.label :street %><br>
+    <%= f.text_field :street %>
+  </p>
+
+  <p>
+    <%= f.label :phone %><br>
+    <%= f.text_field :phone %>
+  </p>
+
+  <p>
+    <%= f.label :official_site %><br>
+    <%= f.text_field :official_site %>
+  </p>
+
+  <p>
+    <%= f.label :rate_reference %><br>
+    <%= f.text_field :rate_reference %>
+  </p>
+
+  <p>
+    <%= f.label :rating %><br>
+    <%= f.text_field :rating %>
+  </p>
+
+  <p>
+    <%= f.label :photo %><br>
+    <% unless @store_info.photo.nil? %>
+      Old Store Logo:
+      <%= image_tag logo_store_info_path(@store_info) %>
+      <BR>
+    <% end %>
+    <%= f.file_field :photo %>
+  </p>
+
+
+  <p>
+    <%= f.label :Groups %><br>
+    <% @groups.each do |group| %>
+    <% checked = @store_info.groups.include?(group) %>
+    <%= check_box_tag "group_ids[]", group.id, checked %>
+    <%= label_tag(group.id, group.name) %>
+    <% end %>
+  </p> 
+
+
+  <% if @group.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@group.errors.count, "error") %> prohibited
+        this store from being saved:
+      </h2>
+      <ul>
+        <% @group.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  沒有店家所屬的連集團? <a group-form="show" data-no-turbolink href="#"> 新增一個! </a>  
+  <div id="new_group" style="display: none">
     <p>
-        <%= f.submit %>
-    </p>
+      <%= fields_for :group, @group do |group_f| %>
+      <%= render partial: 'groups/subform', locals: {f: group_f} %>
+      <% end %>
+    </p> 
+  </div>
+
+  <p>
+    <%= f.submit %>
+  </p>
 
 <% end %>

@@ -50,7 +50,9 @@
 
 <p>
     <strong>Photo:</strong>
-    <%= @store_info.photo %>
+    <% unless @store_info.photo.nil? %>
+      <%= image_tag logo_store_info_path(@store_info) %>
+    <% end %>
 </p>
 
 <p>
