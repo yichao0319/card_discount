@@ -10,7 +10,7 @@ class StoreInfosController < ApplicationController
     end
 
     def create
-        ## logo
+        ## store logo
         @store_info_update_data = store_info_params
         unless params[:store_info][:photo].nil?
             @stored_file_path = Rails.root.join('public', 'photo', 'store_infos', params[:store_info][:photo].original_filename)
@@ -21,8 +21,19 @@ class StoreInfosController < ApplicationController
             @store_info_update_data['photo'] = params[:store_info][:photo].original_filename
         end
 
+        ## group logo
+        @group_update_data = group_params
+        unless params[:group][:photo].nil?
+            @stored_file_path = Rails.root.join('public', 'photo', 'groups', params[:group][:photo].original_filename)
+            File.open(@stored_file_path, 'wb') do |file|
+                file.write(params[:group][:photo].read)
+            end
+
+            @group_update_data['photo'] = params[:group][:photo].original_filename
+        end
+
         @store_info = StoreInfo.new(@store_info_update_data)
-        @group = Group.new(group_params)
+        @group = Group.new(@group_update_data)
         # render plain: params[:store_info].inspect + params[:group].inspect
         # render plain: @group.inspect + " ||| " + @store_info.inspect
 
@@ -115,8 +126,10 @@ class StoreInfosController < ApplicationController
         @store_info = StoreInfo.find(params[:id])
         
         ## delete logo
-        @logo_file = Rails.root.join('public', 'photo', 'store_infos', @store_info.photo)
-        File.delete(@logo_file) if File.exist?(@logo_file)
+        unless @store_info.photo.nil?
+            @logo_file = Rails.root.join('public', 'photo', 'store_infos', @store_info.photo)
+            File.delete(@logo_file) if File.exist?(@logo_file)
+        end
         
         ## delete db entry
         @store_info.destroy

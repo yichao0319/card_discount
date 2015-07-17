@@ -84,8 +84,10 @@ class GroupsController < ApplicationController
         @group = Group.find(params[:id])
 
         ## delete logo
-        @logo_file = Rails.root.join('public', 'photo', 'groups', @group.photo)
-        File.delete(@logo_file) if File.exist?(@logo_file)
+        unless @group.photo.nil?
+            @logo_file = Rails.root.join('public', 'photo', 'groups', @group.photo)
+            File.delete(@logo_file) if File.exist?(@logo_file)
+        end
 
         ## delete db entry
         @group.destroy
