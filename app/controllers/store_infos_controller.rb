@@ -10,43 +10,73 @@ class StoreInfosController < ApplicationController
     end
 
     def create
+        
+        @store_info_update_data = store_info_params
+        @store_info_update_data['photo'] = nil
+        @store_info = StoreInfo.new(@store_info_update_data)
+        ## save to get id
+        unless @store_info.save
+            render 'new'
+        end
+
         ## store logo
         @store_info_update_data = store_info_params
         unless params[:store_info][:photo].nil?
-            @stored_file_path = Rails.root.join('public', 'photo', 'store_infos', params[:store_info][:photo].original_filename)
+            ## rename figure to avoid overwrite
+            if params[:store_info][:photo].original_filename =~ /.*\.(.*)/
+                @file_name = "id" + @store_info.id.to_s + "." + $1
+            else
+                @file_name = "id" + @store_info.id.to_s + "." + params[:store_info][:photo].original_filename
+            end
+
+            @stored_file_path = Rails.root.join('public', 'photo', 'store_infos', @file_name)
             File.open(@stored_file_path, 'wb') do |file|
                 file.write(params[:store_info][:photo].read)
             end
 
-            @store_info_update_data['photo'] = params[:store_info][:photo].original_filename
+            @store_info_update_data['photo'] = @file_name
         end
 
-        ## group logo
+        ## group
         @group_update_data = group_params
-        unless params[:group][:photo].nil?
-            @stored_file_path = Rails.root.join('public', 'photo', 'groups', params[:group][:photo].original_filename)
-            File.open(@stored_file_path, 'wb') do |file|
-                file.write(params[:group][:photo].read)
-            end
-
-            @group_update_data['photo'] = params[:group][:photo].original_filename
-        end
-
-        @store_info = StoreInfo.new(@store_info_update_data)
+        @group_update_data['photo'] = nil
         @group = Group.new(@group_update_data)
-        # render plain: params[:store_info].inspect + params[:group].inspect
-        # render plain: @group.inspect + " ||| " + @store_info.inspect
-
-        @group_ids = nil
+        
+        @group_ids = Array.wrap(params[:group_ids])
+        ## new group
         unless @group.name.empty?
             if @group.save
-                @group_ids = Array.wrap(params[:group_ids])
                 @group_ids << @group.id.to_s
             else
                 render 'new'
             end
+
+            ## group logo
+            @group_update_data = group_params
+            unless params[:group][:photo].nil?
+                ## rename figure to avoid overwrite
+                if params[:group][:photo].original_filename =~ /.*\.(.*)/
+                    @file_name = "id" + @group.id.to_s + "." + $1
+                else
+                    @file_name = "id" + @group.id.to_s + "." + params[:group][:photo].original_filename
+                end
+
+                @stored_file_path = Rails.root.join('public', 'photo', 'groups', @file_name)
+                File.open(@stored_file_path, 'wb') do |file|
+                    file.write(params[:group][:photo].read)
+                end
+
+                @group_update_data['photo'] = @file_name
+
+                unless @group.update(@group_update_data)
+                    render 'new'
+                end
+            end
         end
 
+        @store_info = StoreInfo.new(@store_info_update_data)
+        
+        ## add groups of the store
         unless @group_ids.nil?
             @group_ids = Group.find(@group_ids)
             @store_info.groups = @group_ids
@@ -96,12 +126,18 @@ class StoreInfosController < ApplicationController
         ## store logo
         @store_info_update_data = store_info_params
         unless params[:store_info][:photo].nil?
-            @stored_file_path = Rails.root.join('public', 'photo', 'store_infos', params[:store_info][:photo].original_filename)
+            if params[:store_info][:photo].original_filename =~ /.*\.(.*)/
+                @file_name = "id" + @store_info.id.to_s + "." + $1
+            else
+                @file_name = "id" + @store_info.id.to_s + "." + params[:store_info][:photo].original_filename
+            end
+
+            @stored_file_path = Rails.root.join('public', 'photo', 'store_infos', @file_name)
             File.open(@stored_file_path, 'wb') do |file|
                 file.write(params[:store_info][:photo].read)
             end
 
-            @store_info_update_data['photo'] = params[:store_info][:photo].original_filename
+            @store_info_update_data['photo'] = @file_name
         end
 
         ## update belonging groups

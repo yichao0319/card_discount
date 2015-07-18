@@ -11,26 +11,40 @@ class GroupsController < ApplicationController
     def create
         # render plain: params[:group].inspect
 
+        @group_update_data = group_params
+        @group_update_data['photo'] = nil
+        @group = Group.new(@group_update_data)
+        ## save to get id
+        unless @group.save
+            render 'new'
+        end
+
+        
         ## logo
         @group_update_data = group_params
         unless params[:group][:photo].nil?
-            @stored_file_path = Rails.root.join('public', 'photo', 'groups', params[:group][:photo].original_filename)
+            ## rename figure to avoid overwrite
+            if params[:group][:photo].original_filename =~ /.*\.(.*)/
+                @file_name = "id" + @group.id.to_s + "." + $1
+            else
+                @file_name = "id" + @group.id.to_s + "." + params[:group][:photo].original_filename
+            end
+
+            @stored_file_path = Rails.root.join('public', 'photo', 'groups', @file_name)
             File.open(@stored_file_path, 'wb') do |file|
                 file.write(params[:group][:photo].read)
             end
 
-            @group_update_data['photo'] = params[:group][:photo].original_filename
+            @group_update_data['photo'] = @file_name
         end
         
-        @group = Group.new(@group_update_data)
-
         ## belonging stores
         unless params[:store_info_ids].nil?
             @store_info_ids = StoreInfo.find(params[:store_info_ids])
             @group.store_infos = @store_info_ids
         end
 
-        if @group.save
+        if @group.update(@group_update_data)
             redirect_to @group
         else
             render 'new'
@@ -61,14 +75,21 @@ class GroupsController < ApplicationController
 
         @group_update_data = group_params
         unless params[:group][:photo].nil?
-            @stored_file_path = Rails.root.join('public', 'photo', 'groups', params[:group][:photo].original_filename)
+            if params[:group][:photo].original_filename =~ /.*\.(.*)/
+                @file_name = "id" + @group.id.to_s + "." + $1
+            else
+                @file_name = "id" + @group.id.to_s + "." + params[:group][:photo].original_filename
+            end
+            
+            @stored_file_path = Rails.root.join('public', 'photo', 'groups', @file_name)
             File.open(@stored_file_path, 'wb') do |file|
                 file.write(params[:group][:photo].read)
             end
 
-            @group_update_data['photo'] = params[:group][:photo].original_filename
+            @group_update_data['photo'] = @file_name
         end
 
+        
         if @group.update(@group_update_data)
             redirect_to @group
         else
