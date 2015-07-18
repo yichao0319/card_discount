@@ -74,7 +74,6 @@ class StoreInfosController < ApplicationController
             end
         end
 
-        @store_info = StoreInfo.new(@store_info_update_data)
         
         ## add groups of the store
         unless @group_ids.nil?
@@ -82,7 +81,7 @@ class StoreInfosController < ApplicationController
             @store_info.groups = @group_ids
         end
         
-        if @store_info.save
+        if @store_info.update(@store_info_update_data)
             redirect_to @store_info
         else
             render 'new'
