@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150714153403) do
+ActiveRecord::Schema.define(version: 20150718202500) do
 
   create_table "agents", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -58,6 +58,15 @@ ActiveRecord::Schema.define(version: 20150714153403) do
     t.datetime "updated_at",              null: false
   end
 
+  create_table "discount_ratings", force: :cascade do |t|
+    t.integer  "rating",      limit: 4
+    t.text     "comment",     limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "discount_id", limit: 4
+    t.integer  "user_id",     limit: 4
+  end
+
   create_table "discount_requirement_sets", force: :cascade do |t|
     t.integer  "discount_id",   limit: 4
     t.integer  "bank_id",       limit: 4
@@ -75,7 +84,7 @@ ActiveRecord::Schema.define(version: 20150714153403) do
 
   create_table "discounts", force: :cascade do |t|
     t.integer  "group_id",             limit: 4
-    t.integer  "store_id",             limit: 4
+    t.integer  "store_info_id",        limit: 4
     t.integer  "discount_index",       limit: 1
     t.integer  "discount_type_id",     limit: 1
     t.string   "brief_description",    limit: 255
@@ -117,6 +126,13 @@ ActiveRecord::Schema.define(version: 20150714153403) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.string   "photo",          limit: 255
+  end
+
+  create_table "tag_sets", force: :cascade do |t|
+    t.integer  "tag_id",      limit: 4
+    t.integer  "discount_id", limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "tags", force: :cascade do |t|

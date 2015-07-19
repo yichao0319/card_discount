@@ -6,7 +6,7 @@
 <%= link_to('登出', destroy_user_session_path, :method => :delete) %> |
 <%= link_to('Profile', show_profile_path) %> |
 <%= link_to '新增店家', new_store_info_path %> | 
-<%= link_to '新增優惠' %>
+<%= link_to '新增優惠', new_discount_path %>
 <% if current_user && current_user.privilege >= 4 %>
 | <%= link_to '管理介面', admin_list_users_path %>
 <% end %>

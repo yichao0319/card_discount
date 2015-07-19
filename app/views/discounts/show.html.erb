@@ -1,0 +1,102 @@
+<p>
+  <strong>Brief Description:</strong>
+  <%= @discount.brief_description %>
+</p>
+
+<p>
+  <strong>Complete Description:</strong>
+  <%= @discount.complete_description %>
+</p>
+
+<p>
+  <strong>Start Date:</strong>
+  <%= @discount.start_date %>
+</p>
+
+<p>
+  <strong>End Date:</strong>
+  <%= @discount.end_date %>
+</p>
+
+<p>
+  <strong>Index:</strong>
+  <%= @discount.discount_index %>
+</p>
+
+<p>
+  <strong>Reference:</strong>
+  <%= @discount.reference %>
+</p>
+
+<p>
+  <strong>Notice:</strong>
+  <%= @discount.notice %>
+</p>
+
+<% unless @discount.group.nil? %>
+  <p>
+    <strong>Group:</strong>
+    <%= @discount.group.name %>
+  </p>
+
+  <% unless @discount.group.store_infos.nil? %>
+    including stores: 
+    <% @discount.group.store_infos.each do |store| %>
+      <%= store.name %>, 
+    <% end %>
+    <BR>
+  <% end %>
+<% end %>
+
+
+<% unless @discount.store_info.nil? %>
+  <p>
+    <strong>Store:</strong>
+    <%= @discount.store_info.name %>
+  </p>
+<% end %>
+
+
+<% unless @discount.discount_requirement_sets.nil? %>
+  <% @cnt = 0 %>
+  <% @discount.discount_requirement_sets.each do |req| %>
+    <% @cnt += 1 %>
+    Requirement <%= @cnt %>:
+    
+    <% unless req.bank.nil? %>
+      <p>
+        <strong>Bank:</strong>
+        <%= req.bank.name_with_swift_number %>
+      </p>
+    <% end %>
+
+    <% unless req.card.nil? %>
+      <p>
+        <strong>Card:</strong>
+        <%= req.card.full_name %>
+      </p>
+    <% end %>
+
+    <% unless req.card_level.nil? %>
+      <p>
+        <strong>Card Level:</strong>
+        <%= req.card_level.name %>
+      </p>
+    <% end %>
+  <% end %>
+<% end %>
+
+<% unless @discount.banks.nil? %>
+  <p>
+    <strong>Related banks:</strong>
+    <% @discount.banks.each do |bank| %>
+      <%= bank.name_with_swift_number %>
+    <% end %>
+  </p>
+<% end %>
+
+
+<% unless current_user.nil? %>
+<%= link_to 'Edit', edit_discount_path(@discount) %> |
+<% end %>
+<%= link_to 'Back', discounts_path %>

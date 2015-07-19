@@ -1,0 +1,37 @@
+
+<h1>Listing Discounts</h1>
+
+<% unless current_user.nil? %>
+    <%= link_to 'New Discount', new_discount_path %> <BR><RB>
+<% end %>
+
+<table>
+    <tr>
+        <th>Bried Description</th>
+        <th>Complete Description</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Index</th>
+        <th>Reference</th>
+        <th>Notice</th>
+    </tr>
+    
+    <% @discount.each do |discount| %>
+        <tr>
+            <td><%= discount.brief_description %></td>
+            <td><%= discount.complete_description %></td>
+            <td><%= discount.start_date %></td>
+            <td><%= discount.end_date %></td>
+            <td><%= discount.discount_index %></td>
+            <td><%= discount.reference %></td>
+            <td><%= discount.notice %></td>
+            <td><%= link_to 'Show', discount_path(discount) %></td>
+            <% unless current_user.nil? %>
+                <td><%= link_to 'Edit', edit_discount_path(discount) %></td>
+                <td><%= link_to 'Delete', discount_path(discount),
+                    method: :delete,
+                    data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
+        </tr>
+    <% end %>
+</table>

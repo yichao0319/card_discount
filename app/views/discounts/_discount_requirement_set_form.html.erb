@@ -1,0 +1,20 @@
+<div class="fields">
+  requirement:
+  
+  <div class="field">
+    <%= f.label :bank %><br>
+    <%= f.collection_select :bank_id, Bank.order(:swift_number),:id,:name_with_swift_number, include_blank: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :card %><br>
+    <%= f.collection_select :card_id, Card.order(:name),:id,:full_name, include_blank: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :card_level %><br>
+    <%= f.collection_select :card_level_id, CardLevel.order(:name),:id,:name_with_agent, include_blank: true %>
+  </div>
+
+  <%= link_to_remove_fields "remove", f %>
+</div>
