@@ -1,0 +1,17 @@
+<%= form_for([@discount, @discount.discount_ratings.build]) do |f| %>
+
+  <p>
+    <%= f.label :"Rate the discount:" %>
+    <%= f.text_field :rating %>
+  </p>
+
+  <p>
+    <%= f.label :"Comment:" %>
+    <%= f.text_area :comment %>
+  </p>  
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>

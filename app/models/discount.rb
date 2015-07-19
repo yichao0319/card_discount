@@ -10,6 +10,7 @@ class Discount < ActiveRecord::Base
 
     has_many :tag_sets, dependent: :destroy
     has_many :tags, :through => :tag_sets
+    # accepts_nested_attributes_for :tags, :reject_if => lambda { |a| a[:name].blank?}, :allow_destroy => true
 
     has_many :discount_ratings, dependent: :destroy
     has_many :users, :through => :discount_ratings

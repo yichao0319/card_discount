@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150718202500) do
+ActiveRecord::Schema.define(version: 20150719230038) do
 
   create_table "agents", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -32,6 +32,15 @@ ActiveRecord::Schema.define(version: 20150718202500) do
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+  end
+
+  create_table "card_ratings", force: :cascade do |t|
+    t.integer  "rating",     limit: 4
+    t.text     "comment",    limit: 65535
+    t.integer  "card_id",    limit: 4
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "card_types", force: :cascade do |t|
@@ -92,7 +101,6 @@ ActiveRecord::Schema.define(version: 20150718202500) do
     t.string   "notice",               limit: 255
     t.date     "start_date"
     t.date     "end_date"
-    t.integer  "rating",               limit: 1
     t.string   "reference",            limit: 255
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
@@ -112,6 +120,15 @@ ActiveRecord::Schema.define(version: 20150718202500) do
     t.string   "photo",      limit: 255
   end
 
+  create_table "store_info_ratings", force: :cascade do |t|
+    t.integer  "rating",        limit: 4
+    t.text     "comment",       limit: 65535
+    t.integer  "store_info_id", limit: 4
+    t.integer  "user_id",       limit: 4
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
   create_table "store_infos", force: :cascade do |t|
     t.string   "name",           limit: 255
     t.string   "country",        limit: 255
@@ -122,25 +139,24 @@ ActiveRecord::Schema.define(version: 20150718202500) do
     t.string   "phone",          limit: 255
     t.string   "official_site",  limit: 255
     t.string   "rate_reference", limit: 255
-    t.integer  "rating",         limit: 1
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.string   "photo",          limit: 255
   end
 
   create_table "tag_sets", force: :cascade do |t|
-    t.integer  "tag_id",      limit: 4
-    t.integer  "discount_id", limit: 4
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.integer  "tag_id",        limit: 4
+    t.integer  "discount_id",   limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "store_info_id", limit: 4
+    t.integer  "card_id",       limit: 4
   end
 
   create_table "tags", force: :cascade do |t|
-    t.string   "target_type", limit: 255
-    t.integer  "target_id",   limit: 4
-    t.string   "name",        limit: 255
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "users", force: :cascade do |t|

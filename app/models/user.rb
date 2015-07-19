@@ -11,6 +11,9 @@ class User < ActiveRecord::Base
   has_many :discount_ratings, dependent: :destroy
   has_many :discounts, :through => :discount_ratings
 
+  has_many :store_info_ratings, dependent: :destroy
+  has_many :store_infos, :through => :store_info_ratings
+
   # Virtual attribute for authenticating by either account or email
   # This is in addition to a real persisted field like 'account'
   # attr_accessor :login

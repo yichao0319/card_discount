@@ -91,6 +91,8 @@ class StoreInfosController < ApplicationController
 
     def show
         @store_info = StoreInfo.find(params[:id])
+        # @tags = Tag.joins(:store_infos)
+        @tags = Tag.all
     end
 
     def edit
@@ -183,7 +185,7 @@ class StoreInfosController < ApplicationController
 
     private
         def store_info_params
-            params.require(:store_info).permit(:name, :country, :city, :district, :zip, :street, :phone, :official_site, :rate_reference, :rating, :photo)
+            params.require(:store_info).permit(:name, :country, :city, :district, :zip, :street, :phone, :official_site, :rate_reference, :photo)
         end
 
         def group_params

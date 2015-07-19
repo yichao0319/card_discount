@@ -1,0 +1,8 @@
+<% @store_info.tags.each do |tag| %>
+  <div class="tag">
+    <%= tag.name %> 
+    <%= link_to '[x]', [@store_info, tag], method: :delete %>
+  </div>
+  
+<% end %>
+

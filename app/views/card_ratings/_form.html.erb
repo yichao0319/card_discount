@@ -1,0 +1,17 @@
+<%= form_for([@card, @card.card_ratings.build]) do |f| %>
+
+  <p>
+    <%= f.label :"Rate the store:" %>
+    <%= f.text_field :rating %>
+  </p>
+
+  <p>
+    <%= f.label :"Comment:" %>
+    <%= f.text_area :comment %>
+  </p>  
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>

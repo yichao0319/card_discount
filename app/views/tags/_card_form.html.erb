@@ -1,0 +1,21 @@
+<%= form_for([@card, @card.tags.build]) do |f| %>
+
+  <p>
+    <%= f.label :"select from existing tags:" %><br>
+    <% @tags.each do |tag| %>
+      <% checked = @card.tags.include?(tag) %>
+      <%= check_box_tag "tag_ids[]", tag.id, checked %>
+      <%= label_tag(tag.id, tag.name) %>
+    <% end %>
+  </p>
+
+  <p>
+    <%= f.label :"add a new tag:" %>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>

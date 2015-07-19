@@ -96,6 +96,22 @@
 <% end %>
 
 
+<h2>Tags:</h2>
+<%= render "tags/discount_tag" %>
+
+<h2>Add tags:</h2>
+<%= render 'tags/discount_form' %>
+
+
+<h2>Ratings:</h2>
+<%= render "discount_ratings/discount_rating" %>
+
+<% unless @discount.users.include?(current_user) %>
+  <h2>Add Comment:</h2>
+  <%= render 'discount_ratings/form' %>
+<% end %>
+
+
 <% unless current_user.nil? %>
 <%= link_to 'Edit', edit_discount_path(@discount) %> |
 <% end %>

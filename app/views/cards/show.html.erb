@@ -30,6 +30,21 @@
 </p>
 
 
+<h2>Tags:</h2>
+<%= render "tags/card_tag" %>
+
+<h2>Add tags:</h2>
+<%= render 'tags/card_form' %>
+
+
+<h2>Ratings:</h2>
+<%= render "card_ratings/card_rating" %>
+
+<% unless @card.rating_users.include?(current_user) %>
+  <h2>Add Comment:</h2>
+  <%= render 'card_ratings/form' %>
+<% end %>
+
 <% unless current_user.nil? %>
     <%= link_to 'Edit', edit_card_path(@card) %> |
 <% end %>

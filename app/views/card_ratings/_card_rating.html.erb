@@ -1,0 +1,16 @@
+<% @card.card_ratings.each do |card_rating| %>
+  <div class="card_rating">
+    <strong>User</strong>
+    <%= card_rating.user.account %><BR>
+    <strong>Rating</strong>
+    <%= card_rating.rating %><BR>
+    <strong>Comment</strong>
+    <%= card_rating.comment %><BR>
+
+    <% if card_rating.user.id == current_user.id %>
+        <%= link_to 'remove', [@card, card_rating], method: :delete %>
+    <% end %>
+  </div>
+  
+<% end %>
+

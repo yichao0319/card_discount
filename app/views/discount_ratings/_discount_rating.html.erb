@@ -1,0 +1,16 @@
+<% @discount.discount_ratings.each do |discount_rating| %>
+  <div class="discount_rating">
+    <strong>User</strong>
+    <%= discount_rating.user.account %><BR>
+    <strong>Rating</strong>
+    <%= discount_rating.rating %><BR>
+    <strong>Comment</strong>
+    <%= discount_rating.comment %><BR>
+
+    <% if discount_rating.user.id == current_user.id %>
+        <%= link_to 'remove', [@discount, discount_rating], method: :delete %>
+    <% end %>
+  </div>
+  
+<% end %>
+

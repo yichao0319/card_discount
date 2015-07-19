@@ -26,6 +26,8 @@ class DiscountsController < ApplicationController
 
     def show
         @discount = Discount.find(params[:id])
+        # @tags = Tag.joins(:discounts)
+        @tags = Tag.all
         # render plain: @discount.inspect + "\n\n" + @discount.group.inspect
     end
 

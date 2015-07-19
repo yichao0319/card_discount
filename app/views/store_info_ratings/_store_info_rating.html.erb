@@ -1,0 +1,16 @@
+<% @store_info.store_info_ratings.each do |store_info_rating| %>
+  <div class="store_info_rating">
+    <strong>User</strong>
+    <%= store_info_rating.user.account %><BR>
+    <strong>Rating</strong>
+    <%= store_info_rating.rating %><BR>
+    <strong>Comment</strong>
+    <%= store_info_rating.comment %><BR>
+
+    <% if store_info_rating.user.id == current_user.id %>
+        <%= link_to 'remove', [@store_info, store_info_rating], method: :delete %>
+    <% end %>
+  </div>
+  
+<% end %>
+

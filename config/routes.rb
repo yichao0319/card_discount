@@ -23,7 +23,11 @@ Rails.application.routes.draw do
       get 'logo'
     end
   end
+
   resources :store_infos do
+    resources :tags
+    resources :store_info_ratings
+
     member do
       get 'logo'
     end
@@ -34,10 +38,16 @@ Rails.application.routes.draw do
   resources :card_types
   resources :card_levels
   resources :banks
-  resources :cards
+  resources :cards do
+    resources :tags
+    resources :card_ratings
+  end
 
   ## discount
-  resources :discounts
+  resources :discounts do
+    resources :tags
+    resources :discount_ratings
+  end
 
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,0 +1,8 @@
+<% @card.tags.each do |tag| %>
+  <div class="tag">
+    <%= tag.name %> 
+    <%= link_to '[x]', [@card, tag], method: :delete %>
+  </div>
+  
+<% end %>
+
